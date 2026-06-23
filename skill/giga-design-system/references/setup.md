@@ -23,8 +23,8 @@ Apply these once per project so vanilla shadcn renders as Giga.
     --destructive: 357 88% 52%; --destructive-foreground: 0 0% 100%;
     --border: 0 0% 91%; --input: 0 0% 91%; --ring: 214 100% 58%;
     --radius: 6px;
-    --chart-1: 214 100% 58%; --chart-2: 146 100% 42%; --chart-3: 43 100% 62%;
-    --chart-4: 280 65% 60%; --chart-5: 16 90% 55%;
+    --chart-1: 214 100% 58%; --chart-2: 161 93% 30%; --chart-3: 0 84% 60%;
+    --chart-4: 288 56% 52%; --chart-5: 0 0% 44%;
   }
   .dark {
     --background: 0 0% 9%; --foreground: 0 0% 98%;
@@ -36,8 +36,8 @@ Apply these once per project so vanilla shadcn renders as Giga.
     --accent: 0 0% 22%; --accent-foreground: 0 0% 98%;
     --destructive: 357 88% 52%; --destructive-foreground: 0 0% 100%;
     --border: 0 0% 22%; --input: 0 0% 22%; --ring: 214 100% 58%;
-    --chart-1: 214 100% 58%; --chart-2: 146 100% 50%; --chart-3: 43 100% 62%;
-    --chart-4: 280 70% 68%; --chart-5: 16 90% 62%;
+    --chart-1: 214 100% 58%; --chart-2: 161 84% 40%; --chart-3: 0 84% 63%;
+    --chart-4: 288 60% 64%; --chart-5: 0 0% 62%;
   }
 }
 

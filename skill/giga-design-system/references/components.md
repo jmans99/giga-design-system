@@ -12,7 +12,7 @@ Coloured dot / counted cluster for plotting entities on a map. Map-engine agnost
 <StatusMarker status="bad" selected pulse />
 ```
 
-Props: `status` (`good|moderate|bad|unmapped`), `size` (`sm|md|lg`), `count?`, `pulse?`, `selected?`.
+Props: `status` (quality `good|moderate|bad|unknown` or state `connected|not-connected|unknown`), `size` (`sm|md|lg`), `count?`, `pulse?`, `selected?`.
 
 ## ConnectivityLegend
 
@@ -21,7 +21,7 @@ The map key. Floats over the map (usually bottom-right).
 ```tsx
 <ConnectivityLegend
   title="School connectivity"
-  counts={{ good: 812004, moderate: 410233, bad: 233910, unmapped: 644120 }}
+  counts={{ good: 812004, moderate: 410233, bad: 233910, unknown: 644120 }}
 />
 ```
 

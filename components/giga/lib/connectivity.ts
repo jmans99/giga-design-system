@@ -1,21 +1,22 @@
 /**
- * Giga connectivity status taxonomy.
+ * Giga connectivity taxonomies.
  *
- * Single source of truth for the connectivity states used across Giga Maps:
- * status values, human labels, descriptions and the brand colours (from the
- * Giga style guide). Components read colours from here as inline styles so the
- * kit renders correctly even before a consumer extends their Tailwind config.
+ * Two related dimensions used across Giga Maps, sharing the `unknown` state:
+ *  - Quality: good | moderate | bad | unknown   (download-speed banding)
+ *  - State:   connected | not-connected | unknown   (binary connectivity)
+ *
+ * Colours come from the Giga style guide. Components read them as inline styles
+ * so the kit renders correctly before a consumer extends their Tailwind config.
  */
 
-export type ConnectivityStatus = "good" | "moderate" | "bad" | "unmapped";
+export type ConnectivityQuality = "good" | "moderate" | "bad" | "unknown";
+export type ConnectivityState = "connected" | "not-connected" | "unknown";
+export type ConnectivityStatus = ConnectivityQuality | ConnectivityState;
 
 export interface ConnectivityMeta {
   value: ConnectivityStatus;
-  /** Short label for legends and chips. */
   label: string;
-  /** Longer description for tooltips / legends. */
   description: string;
-  /** Brand hex from the Giga style guide. */
   hex: string;
 }
 
@@ -29,30 +30,52 @@ export const CONNECTIVITY: Record<ConnectivityStatus, ConnectivityMeta> = {
   moderate: {
     value: "moderate",
     label: "Moderate",
-    description: "Connected with slow download speed",
+    description: "Connected with moderate download speed",
     hex: "#ffc93d",
   },
   bad: {
     value: "bad",
-    label: "No connectivity",
-    description: "Mapped, but no connectivity",
+    label: "Bad",
+    description: "Connected with poor download speed",
     hex: "#ed1c24",
   },
-  unmapped: {
-    value: "unmapped",
-    label: "Unmapped",
-    description: "No location or connectivity data",
-    hex: "#989898",
+  connected: {
+    value: "connected",
+    label: "Connected",
+    description: "Has internet connectivity",
+    hex: "#00d661",
+  },
+  "not-connected": {
+    value: "not-connected",
+    label: "Not connected",
+    description: "No internet connectivity",
+    hex: "#ed1c24",
+  },
+  unknown: {
+    value: "unknown",
+    label: "Unknown",
+    description: "No connectivity data",
+    hex: "#6f6f6f",
   },
 };
 
-/** Canonical display order: best → worst → unknown. */
-export const CONNECTIVITY_ORDER: ConnectivityStatus[] = [
+/** Quality banding: best → worst → unknown. */
+export const QUALITY_ORDER: ConnectivityQuality[] = [
   "good",
   "moderate",
   "bad",
-  "unmapped",
+  "unknown",
 ];
+
+/** Binary state: connected → not connected → unknown. */
+export const STATE_ORDER: ConnectivityState[] = [
+  "connected",
+  "not-connected",
+  "unknown",
+];
+
+/** @deprecated alias for QUALITY_ORDER, kept for back-compat. */
+export const CONNECTIVITY_ORDER = QUALITY_ORDER;
 
 export function connectivityHex(status: ConnectivityStatus): string {
   return CONNECTIVITY[status].hex;

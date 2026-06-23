@@ -79,7 +79,9 @@ const config: Config = {
           good: "#00d661",
           moderate: "#ffc93d",
           bad: "#ed1c24",
-          unmapped: "#989898",
+          unknown: "#6f6f6f",
+          connected: "#00d661",
+          "not-connected": "#ed1c24",
         },
         chart: {
           "1": "hsl(var(--chart-1))",

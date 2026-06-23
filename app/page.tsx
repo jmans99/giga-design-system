@@ -22,7 +22,7 @@ const MARKERS: Array<{
   { top: "38%", left: "52%", status: "bad" },
   { top: "52%", left: "60%", status: "moderate", count: 23 },
   { top: "64%", left: "54%", status: "good" },
-  { top: "30%", left: "72%", status: "unmapped" },
+  { top: "30%", left: "72%", status: "unknown" },
   { top: "48%", left: "80%", status: "good", count: 5 },
   { top: "68%", left: "76%", status: "bad" },
 ];
@@ -121,7 +121,7 @@ export default function Home() {
         <ConnectivityLegend
           className="absolute bottom-4 right-4 w-56"
           title="School connectivity"
-          counts={{ good: 812_004, moderate: 410_233, bad: 233_910, unmapped: 644_120 }}
+          counts={{ good: 812_004, moderate: 410_233, bad: 233_910, unknown: 644_120 }}
         />
       </div>
     </div>

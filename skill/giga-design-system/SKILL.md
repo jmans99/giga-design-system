@@ -22,7 +22,9 @@ Build on-brand Giga UI. Stack: **Next.js + React + Tailwind CSS + shadcn/ui**. s
 
 - **Fonts:** Manrope → headings (`font-heading`, weight 500; titles 600). Open Sans → everything else (`font-sans`, 400/500/600). No other fonts.
 - **Colour:** Giga palette only. Primary base `#277aff`. Use semantic tokens (`bg-background`, `text-foreground`, `bg-card`, `text-muted-foreground`, `border-border`, `bg-primary`) so light + dark both work.
-- **Connectivity status:** always from the taxonomy (`good #00d661`, `moderate #ffc93d`, `no-connectivity #ed1c24`, `unmapped #989898`). Never hardcode status colours.
+- **Connectivity:** from `lib/connectivity` — quality (`good #00d661`, `moderate #ffc93d`, `bad #ed1c24`, `unknown #6f6f6f`) and state (`connected #00d661`, `not-connected #ed1c24`, `unknown #6f6f6f`). Never hardcode status colours.
+- **Data-viz / charts:** chart tokens — blue `#277AFF`, green `#059669`, red `#EF4444`, purple `#AE3EC9`, grey `#6F6F6F`.
+- **Icons:** lucide-react.
 - **Giga Maps is dark mode** — wrap map UI in `.dark`.
 - **Radius:** `--radius` 6px (`rounded-lg/md/sm`); pills `rounded-full`.
 - **Shadows:** controls `shadow`, cards `shadow-sm/md`, dropdowns/tooltips `shadow-lg`, modals `shadow-xl`. Interactive elements move **up one shadow step on hover**.

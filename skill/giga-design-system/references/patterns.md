@@ -33,7 +33,7 @@ Anatomy: header (logo + entity filter + account) · left collapsible detail pane
 
 - One taxonomy everywhere: markers, legend, popup, chips. Import from `lib/connectivity`.
 - Marker rendering scales with zoom: individual dots when zoomed in, clusters (`count`) when zoomed out.
-- `unmapped` (grey) is a first-class state — entities with no location/connectivity data.
+- Two taxonomies: **quality** (good/moderate/bad/unknown) and binary **state** (connected/not-connected/unknown), sharing `unknown` (grey). `ConnectivityLegend` defaults to quality; pass `statuses={STATE_ORDER}` for the binary legend.
 
 ## Detail flow
 

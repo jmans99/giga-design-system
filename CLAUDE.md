@@ -14,7 +14,8 @@ Next.js + React + Tailwind CSS + shadcn/ui. shadcn primitives are **vanilla**, t
 ## Colour (Giga palette only)
 
 - Primary base `#277aff` (`--primary`). Never introduce off-palette colours.
-- Connectivity status comes from `components/giga/lib/connectivity.ts` — good `#00d661`, moderate `#ffc93d`, no-connectivity `#ed1c24`, unmapped `#989898`. Always use this taxonomy; never hardcode status colours.
+- Connectivity comes from `components/giga/lib/connectivity.ts` — two taxonomies sharing `unknown`: **quality** (good `#00d661`, moderate `#ffc93d`, bad `#ed1c24`, unknown `#6f6f6f`) and **state** (connected `#00d661`, not-connected `#ed1c24`, unknown `#6f6f6f`). Never hardcode status colours.
+- Data-viz uses the chart tokens (`--chart-1…5` / `chart.1…5`): blue `#277AFF`, green `#059669`, red `#EF4444`, purple `#AE3EC9`, grey `#6F6F6F`.
 - Use semantic tokens (`bg-background`, `text-foreground`, `bg-card`, `text-muted-foreground`, `border-border`, `bg-primary`) so light/dark both work.
 - **Giga Maps is dark mode.** Wrap map UI in `.dark`.
 
@@ -27,6 +28,7 @@ Next.js + React + Tailwind CSS + shadcn/ui. shadcn primitives are **vanilla**, t
 ## Components
 
 - Primitives live in `components/ui/*` (shadcn). Add more with `npx shadcn@latest add <name>`.
+- Icons: **lucide-react** (the standard icon set for Giga). Import from `lucide-react`.
 - Giga composites live in `components/giga/*`. Prefer these for product UI:
   - `StatusMarker`, `ConnectivityLegend` — map markers + key
   - `EntityTypeSelector` — all / schools / health filter (single or multi)
