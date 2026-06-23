@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "giga-connectivity-legend",
+  "type": "registry:component",
+  "title": "Connectivity legend",
+  "description": "Map key explaining the connectivity status colours, with optional counts.",
+  "registryDependencies": [
+    "giga-connectivity"
+  ],
+  "files": [
+    {
+      "path": "components/giga/connectivity-legend.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport {\n  CONNECTIVITY,\n  CONNECTIVITY_ORDER,\n  type ConnectivityStatus,\n} from \"@/components/giga/lib/connectivity\";\n\nexport interface ConnectivityLegendProps\n  extends React.HTMLAttributes<HTMLDivElement> {\n  title?: string;\n  /** Optional counts shown next to each status. */\n  counts?: Partial<Record<ConnectivityStatus, number>>;\n  /** Which statuses to show, in order. Defaults to all. */\n  statuses?: ConnectivityStatus[];\n  orientation?: \"vertical\" | \"horizontal\";\n}\n\n/**\n * Connectivity legend — the map key that explains the status colours. Floats\n * over the map (typically bottom-right). Pair with `StatusMarker`.\n */\nexport function ConnectivityLegend({\n  title = \"Connectivity\",\n  counts,\n  statuses = CONNECTIVITY_ORDER,\n  orientation = \"vertical\",\n  className,\n  ...props\n}: ConnectivityLegendProps) {\n  return (\n    <div\n      className={cn(\n        \"rounded-md border bg-card/95 p-3 text-card-foreground shadow-lg backdrop-blur\",\n        className,\n      )}\n      {...props}\n    >\n      {title && (\n        <p className=\"mb-2 text-xs font-semibold text-muted-foreground\">\n          {title}\n        </p>\n      )}\n      <ul\n        className={cn(\n          \"flex gap-x-4 gap-y-2\",\n          orientation === \"vertical\"\n            ? \"flex-col\"\n            : \"flex-row flex-wrap items-center\",\n        )}\n      >\n        {statuses.map((s) => {\n          const meta = CONNECTIVITY[s];\n          const count = counts?.[s];\n          return (\n            <li key={s} className=\"flex items-center gap-2 text-sm\">\n              <span\n                aria-hidden\n                className=\"size-2.5 shrink-0 rounded-full\"\n                style={{ backgroundColor: meta.hex }}\n              />\n              <span className=\"text-foreground\">{meta.label}</span>\n              {count != null && (\n                <span className=\"ml-auto pl-3 tabular-nums text-muted-foreground\">\n                  {count.toLocaleString()}\n                </span>\n              )}\n            </li>\n          );\n        })}\n      </ul>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/giga/connectivity-legend.tsx"
+    }
+  ]
+}

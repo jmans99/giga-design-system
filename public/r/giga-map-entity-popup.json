@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "giga-map-entity-popup",
+  "type": "registry:component",
+  "title": "Map entity popup",
+  "description": "Card shown when a school / health center is selected on the map.",
+  "registryDependencies": [
+    "card",
+    "button",
+    "giga-status-marker",
+    "giga-connectivity"
+  ],
+  "files": [
+    {
+      "path": "components/giga/map-entity-popup.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Card } from \"@/components/ui/card\";\nimport { Button } from \"@/components/ui/button\";\nimport { StatusMarker } from \"@/components/giga/status-marker\";\nimport {\n  CONNECTIVITY,\n  type ConnectivityStatus,\n} from \"@/components/giga/lib/connectivity\";\n\nexport interface EntityStat {\n  label: string;\n  value: React.ReactNode;\n}\n\nexport interface MapEntityPopupProps\n  extends React.HTMLAttributes<HTMLDivElement> {\n  name: string;\n  /** e.g. \"School\" | \"Health center\". */\n  entityType?: string;\n  status: ConnectivityStatus;\n  location?: string;\n  stats?: EntityStat[];\n  onViewDetails?: () => void;\n}\n\n/**\n * Map entity popup — the card shown when an entity (school / health center) is\n * selected on the map. Leads with the connectivity status, then key stats and\n * a \"View details\" action that opens the full detail panel.\n */\nexport function MapEntityPopup({\n  name,\n  entityType = \"School\",\n  status,\n  location,\n  stats = [],\n  onViewDetails,\n  className,\n  ...props\n}: MapEntityPopupProps) {\n  const meta = CONNECTIVITY[status];\n\n  return (\n    <Card className={cn(\"w-72 overflow-hidden p-0 shadow-lg\", className)} {...props}>\n      <div className=\"flex items-start gap-3 p-3\">\n        <StatusMarker status={status} size=\"lg\" className=\"mt-0.5\" />\n        <div className=\"min-w-0 flex-1\">\n          <p className=\"truncate font-heading text-base font-medium leading-tight\">\n            {name}\n          </p>\n          <p className=\"truncate text-xs text-muted-foreground\">\n            {entityType}\n            {location ? ` · ${location}` : \"\"}\n          </p>\n          <p className=\"mt-1 text-xs font-medium\" style={{ color: meta.hex }}>\n            {meta.label}\n          </p>\n        </div>\n      </div>\n\n      {stats.length > 0 && (\n        <div className=\"grid grid-cols-2 gap-px bg-border\">\n          {stats.map((stat, i) => (\n            <div key={i} className=\"bg-card p-3\">\n              <p className=\"text-xs text-muted-foreground\">{stat.label}</p>\n              <p className=\"font-heading text-sm text-foreground\">\n                {stat.value}\n              </p>\n            </div>\n          ))}\n        </div>\n      )}\n\n      {onViewDetails && (\n        <div className=\"p-3 pt-2\">\n          <Button className=\"w-full\" onClick={onViewDetails}>\n            View details\n          </Button>\n        </div>\n      )}\n    </Card>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/giga/map-entity-popup.tsx"
+    }
+  ]
+}

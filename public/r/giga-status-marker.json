@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "giga-status-marker",
+  "type": "registry:component",
+  "title": "Connectivity status marker",
+  "description": "Map marker/dot coloured by connectivity status, with cluster and selected states.",
+  "registryDependencies": [
+    "giga-connectivity"
+  ],
+  "files": [
+    {
+      "path": "components/giga/status-marker.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport {\n  CONNECTIVITY,\n  type ConnectivityStatus,\n} from \"@/components/giga/lib/connectivity\";\n\nconst sizeMap = { sm: 10, md: 14, lg: 18 } as const;\n\nexport interface StatusMarkerProps\n  extends React.HTMLAttributes<HTMLSpanElement> {\n  status: ConnectivityStatus;\n  size?: keyof typeof sizeMap;\n  /** When > 1, renders a counted cluster bubble instead of a single dot. */\n  count?: number;\n  /** Animated ping to draw attention (single markers only). */\n  pulse?: boolean;\n  /** Selected state — emphasised ring. */\n  selected?: boolean;\n}\n\n/**\n * Connectivity status marker — a coloured dot (or counted cluster) for plotting\n * Giga entities on a map. Presentational and map-engine agnostic: the consumer\n * positions it (absolute / overlay) on whatever map library they use.\n */\nexport function StatusMarker({\n  status,\n  size = \"md\",\n  count,\n  pulse,\n  selected,\n  className,\n  style,\n  ...props\n}: StatusMarkerProps) {\n  const meta = CONNECTIVITY[status];\n  const px = sizeMap[size];\n  const isCluster = typeof count === \"number\" && count > 1;\n  const dimension = isCluster ? px + 12 : px;\n\n  return (\n    <span\n      role=\"img\"\n      aria-label={\n        isCluster ? `${count} entities — ${meta.label}` : meta.label\n      }\n      className={cn(\n        \"relative inline-flex items-center justify-center rounded-full ring-2 ring-background transition-transform\",\n        selected && \"z-10 scale-110 ring-foreground\",\n        className,\n      )}\n      style={{\n        backgroundColor: meta.hex,\n        width: dimension,\n        height: dimension,\n        ...style,\n      }}\n      {...props}\n    >\n      {isCluster && (\n        <span className=\"px-1 text-[10px] font-semibold leading-none text-black/80\">\n          {count > 99 ? \"99+\" : count}\n        </span>\n      )}\n      {pulse && !isCluster && (\n        <span\n          aria-hidden\n          className=\"absolute inset-0 animate-ping rounded-full\"\n          style={{ backgroundColor: meta.hex, opacity: 0.5 }}\n        />\n      )}\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/giga/status-marker.tsx"
+    }
+  ]
+}

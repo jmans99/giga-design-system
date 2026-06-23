@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "giga-map-detail-panel",
+  "type": "registry:component",
+  "title": "Map detail panel",
+  "description": "Collapsible side panel that holds entity stats, filters and details over the map.",
+  "registryDependencies": [
+    "button",
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "components/giga/map-detail-panel.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ChevronLeft, ChevronRight, X } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\nimport { Button } from \"@/components/ui/button\";\nimport { ScrollArea } from \"@/components/ui/scroll-area\";\n\nexport interface MapDetailPanelProps\n  extends React.HTMLAttributes<HTMLDivElement> {\n  title: string;\n  subtitle?: string;\n  collapsed?: boolean;\n  onCollapsedChange?: (collapsed: boolean) => void;\n  onClose?: () => void;\n  side?: \"left\" | \"right\";\n  footer?: React.ReactNode;\n}\n\n/**\n * Map detail panel — the collapsible side panel that holds entity stats,\n * filters and details over the map. Header carries a collapse toggle and an\n * optional close. Content scrolls; an optional sticky footer holds CTAs.\n */\nexport function MapDetailPanel({\n  title,\n  subtitle,\n  collapsed = false,\n  onCollapsedChange,\n  onClose,\n  side = \"left\",\n  footer,\n  className,\n  children,\n  ...props\n}: MapDetailPanelProps) {\n  const Chevron =\n    side === \"left\"\n      ? collapsed\n        ? ChevronRight\n        : ChevronLeft\n      : collapsed\n        ? ChevronLeft\n        : ChevronRight;\n\n  return (\n    <div\n      className={cn(\n        \"flex h-full flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-md transition-[width] duration-300\",\n        collapsed ? \"w-14\" : \"w-80\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"flex items-center gap-2 border-b p-3\">\n        {onCollapsedChange && (\n          <Button\n            variant=\"ghost\"\n            size=\"icon\"\n            className=\"size-7 shrink-0\"\n            aria-label={collapsed ? \"Expand panel\" : \"Collapse panel\"}\n            onClick={() => onCollapsedChange(!collapsed)}\n          >\n            <Chevron className=\"size-4\" />\n          </Button>\n        )}\n        {!collapsed && (\n          <div className=\"min-w-0 flex-1\">\n            <p className=\"truncate font-heading text-base font-medium leading-tight\">\n              {title}\n            </p>\n            {subtitle && (\n              <p className=\"truncate text-xs text-muted-foreground\">\n                {subtitle}\n              </p>\n            )}\n          </div>\n        )}\n        {!collapsed && onClose && (\n          <Button\n            variant=\"ghost\"\n            size=\"icon\"\n            className=\"size-7 shrink-0\"\n            aria-label=\"Close\"\n            onClick={onClose}\n          >\n            <X className=\"size-4\" />\n          </Button>\n        )}\n      </div>\n\n      {!collapsed && (\n        <>\n          <ScrollArea className=\"flex-1\">\n            <div className=\"space-y-4 p-3\">{children}</div>\n          </ScrollArea>\n          {footer && <div className=\"border-t p-3\">{footer}</div>}\n        </>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/giga/map-detail-panel.tsx"
+    }
+  ]
+}

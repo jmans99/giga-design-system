@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "giga-connectivity",
+  "type": "registry:lib",
+  "title": "Connectivity status taxonomy",
+  "description": "Status values, labels and brand colours for Giga connectivity (good / moderate / bad / unmapped).",
+  "files": [
+    {
+      "path": "components/giga/lib/connectivity.ts",
+      "content": "/**\n * Giga connectivity status taxonomy.\n *\n * Single source of truth for the connectivity states used across Giga Maps:\n * status values, human labels, descriptions and the brand colours (from the\n * Giga style guide). Components read colours from here as inline styles so the\n * kit renders correctly even before a consumer extends their Tailwind config.\n */\n\nexport type ConnectivityStatus = \"good\" | \"moderate\" | \"bad\" | \"unmapped\";\n\nexport interface ConnectivityMeta {\n  value: ConnectivityStatus;\n  /** Short label for legends and chips. */\n  label: string;\n  /** Longer description for tooltips / legends. */\n  description: string;\n  /** Brand hex from the Giga style guide. */\n  hex: string;\n}\n\nexport const CONNECTIVITY: Record<ConnectivityStatus, ConnectivityMeta> = {\n  good: {\n    value: \"good\",\n    label: \"Good\",\n    description: \"Connected with good download speed\",\n    hex: \"#00d661\",\n  },\n  moderate: {\n    value: \"moderate\",\n    label: \"Moderate\",\n    description: \"Connected with slow download speed\",\n    hex: \"#ffc93d\",\n  },\n  bad: {\n    value: \"bad\",\n    label: \"No connectivity\",\n    description: \"Mapped, but no connectivity\",\n    hex: \"#ed1c24\",\n  },\n  unmapped: {\n    value: \"unmapped\",\n    label: \"Unmapped\",\n    description: \"No location or connectivity data\",\n    hex: \"#989898\",\n  },\n};\n\n/** Canonical display order: best → worst → unknown. */\nexport const CONNECTIVITY_ORDER: ConnectivityStatus[] = [\n  \"good\",\n  \"moderate\",\n  \"bad\",\n  \"unmapped\",\n];\n\nexport function connectivityHex(status: ConnectivityStatus): string {\n  return CONNECTIVITY[status].hex;\n}\n",
+      "type": "registry:lib",
+      "target": "components/giga/lib/connectivity.ts"
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "giga",
+  "homepage": "https://github.com/jmans99/giga-design-system",
+  "items": [
+    {
+      "name": "giga-theme",
+      "type": "registry:theme",
+      "title": "Giga theme",
+      "description": "Giga Product Design System tokens — light + dark colours used by every Giga component.",
+      "cssVars": {
+        "light": {
+          "background": "0 0% 100%",
+          "foreground": "0 0% 9%",
+          "card": "0 0% 100%",
+          "card-foreground": "0 0% 9%",
+          "popover": "0 0% 100%",
+          "popover-foreground": "0 0% 9%",
+          "primary": "214 100% 58%",
+          "primary-foreground": "0 0% 100%",
+          "secondary": "0 0% 96%",
+          "secondary-foreground": "0 0% 9%",
+          "muted": "0 0% 91%",
+          "muted-foreground": "0 0% 44%",
+          "accent": "214 100% 95%",
+          "accent-foreground": "0 0% 9%",
+          "destructive": "357 88% 52%",
+          "destructive-foreground": "0 0% 100%",
+          "border": "0 0% 91%",
+          "input": "0 0% 91%",
+          "ring": "214 100% 58%",
+          "radius": "6px",
+          "chart-1": "214 100% 58%",
+          "chart-2": "146 100% 42%",
+          "chart-3": "43 100% 62%",
+          "chart-4": "280 65% 60%",
+          "chart-5": "16 90% 55%"
+        },
+        "dark": {
+          "background": "0 0% 9%",
+          "foreground": "0 0% 98%",
+          "card": "0 0% 9%",
+          "card-foreground": "0 0% 98%",
+          "popover": "0 0% 9%",
+          "popover-foreground": "0 0% 98%",
+          "primary": "214 100% 58%",
+          "primary-foreground": "0 0% 100%",
+          "secondary": "0 0% 9%",
+          "secondary-foreground": "0 0% 98%",
+          "muted": "0 0% 22%",
+          "muted-foreground": "0 0% 79%",
+          "accent": "0 0% 22%",
+          "accent-foreground": "0 0% 98%",
+          "destructive": "357 88% 52%",
+          "destructive-foreground": "0 0% 100%",
+          "border": "0 0% 22%",
+          "input": "0 0% 22%",
+          "ring": "214 100% 58%",
+          "chart-1": "214 100% 58%",
+          "chart-2": "146 100% 50%",
+          "chart-3": "43 100% 62%",
+          "chart-4": "280 70% 68%",
+          "chart-5": "16 90% 62%"
+        }
+      }
+    },
+    {
+      "name": "giga-connectivity",
+      "type": "registry:lib",
+      "title": "Connectivity status taxonomy",
+      "description": "Status values, labels and brand colours for Giga connectivity (good / moderate / bad / unmapped).",
+      "files": [
+        {
+          "path": "components/giga/lib/connectivity.ts",
+          "type": "registry:lib",
+          "target": "components/giga/lib/connectivity.ts"
+        }
+      ]
+    },
+    {
+      "name": "giga-status-marker",
+      "type": "registry:component",
+      "title": "Connectivity status marker",
+      "description": "Map marker/dot coloured by connectivity status, with cluster and selected states.",
+      "registryDependencies": ["giga-connectivity"],
+      "files": [
+        {
+          "path": "components/giga/status-marker.tsx",
+          "type": "registry:component",
+          "target": "components/giga/status-marker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "giga-connectivity-legend",
+      "type": "registry:component",
+      "title": "Connectivity legend",
+      "description": "Map key explaining the connectivity status colours, with optional counts.",
+      "registryDependencies": ["giga-connectivity"],
+      "files": [
+        {
+          "path": "components/giga/connectivity-legend.tsx",
+          "type": "registry:component",
+          "target": "components/giga/connectivity-legend.tsx"
+        }
+      ]
+    },
+    {
+      "name": "giga-entity-type-selector",
+      "type": "registry:component",
+      "title": "Entity-type selector",
+      "description": "Pill segmented control to filter the map by entity type. Single or multi-select.",
+      "files": [
+        {
+          "path": "components/giga/entity-type-selector.tsx",
+          "type": "registry:component",
+          "target": "components/giga/entity-type-selector.tsx"
+        }
+      ]
+    },
+    {
+      "name": "giga-stat-tile",
+      "type": "registry:component",
+      "title": "Stat tile",
+      "description": "Compact KPI card with optional trend and chart slot, used in the detail panel.",
+      "registryDependencies": ["card", "giga-connectivity"],
+      "files": [
+        {
+          "path": "components/giga/stat-tile.tsx",
+          "type": "registry:component",
+          "target": "components/giga/stat-tile.tsx"
+        }
+      ]
+    },
+    {
+      "name": "giga-map-detail-panel",
+      "type": "registry:component",
+      "title": "Map detail panel",
+      "description": "Collapsible side panel that holds entity stats, filters and details over the map.",
+      "registryDependencies": ["button", "scroll-area"],
+      "files": [
+        {
+          "path": "components/giga/map-detail-panel.tsx",
+          "type": "registry:component",
+          "target": "components/giga/map-detail-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "giga-map-entity-popup",
+      "type": "registry:component",
+      "title": "Map entity popup",
+      "description": "Card shown when a school / health center is selected on the map.",
+      "registryDependencies": ["card", "button", "giga-status-marker", "giga-connectivity"],
+      "files": [
+        {
+          "path": "components/giga/map-entity-popup.tsx",
+          "type": "registry:component",
+          "target": "components/giga/map-entity-popup.tsx"
+        }
+      ]
+    },
+    {
+      "name": "giga-map-core",
+      "type": "registry:block",
+      "title": "Giga Maps — map core kit",
+      "description": "The full Giga Maps map-core slice: status markers, legend, entity selector, stat tile, detail panel and entity popup. Install this to get the whole kit in one command.",
+      "registryDependencies": ["button", "card", "badge", "tabs", "separator", "scroll-area"],
+      "files": [
+        {
+          "path": "components/giga/lib/connectivity.ts",
+          "type": "registry:lib",
+          "target": "components/giga/lib/connectivity.ts"
+        },
+        {
+          "path": "components/giga/status-marker.tsx",
+          "type": "registry:component",
+          "target": "components/giga/status-marker.tsx"
+        },
+        {
+          "path": "components/giga/connectivity-legend.tsx",
+          "type": "registry:component",
+          "target": "components/giga/connectivity-legend.tsx"
+        },
+        {
+          "path": "components/giga/entity-type-selector.tsx",
+          "type": "registry:component",
+          "target": "components/giga/entity-type-selector.tsx"
+        },
+        {
+          "path": "components/giga/stat-tile.tsx",
+          "type": "registry:component",
+          "target": "components/giga/stat-tile.tsx"
+        },
+        {
+          "path": "components/giga/map-detail-panel.tsx",
+          "type": "registry:component",
+          "target": "components/giga/map-detail-panel.tsx"
+        },
+        {
+          "path": "components/giga/map-entity-popup.tsx",
+          "type": "registry:component",
+          "target": "components/giga/map-entity-popup.tsx"
+        }
+      ]
+    }
+  ]
+}

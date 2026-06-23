@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "giga-entity-type-selector",
+  "type": "registry:component",
+  "title": "Entity-type selector",
+  "description": "Pill segmented control to filter the map by entity type. Single or multi-select.",
+  "files": [
+    {
+      "path": "components/giga/entity-type-selector.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface EntityType {\n  value: string;\n  label: string;\n  icon?: React.ReactNode;\n}\n\nexport const DEFAULT_ENTITY_TYPES: EntityType[] = [\n  { value: \"all\", label: \"All entities\" },\n  { value: \"schools\", label: \"Schools\" },\n  { value: \"health\", label: \"Health centers\" },\n];\n\ntype SingleProps = {\n  multiple?: false;\n  value: string;\n  onValueChange?: (value: string) => void;\n};\n\ntype MultiProps = {\n  multiple: true;\n  value: string[];\n  onValueChange?: (value: string[]) => void;\n};\n\nexport type EntityTypeSelectorProps = {\n  types?: EntityType[];\n  className?: string;\n} & (SingleProps | MultiProps);\n\n/**\n * Entity-type selector — the pill segmented control that filters the map by\n * entity type (All / Schools / Health centers). Supports single-select\n * (`radiogroup`) and multi-select (`group` of checkboxes).\n */\nexport function EntityTypeSelector(props: EntityTypeSelectorProps) {\n  const { types = DEFAULT_ENTITY_TYPES, className } = props;\n\n  const isActive = (value: string) =>\n    props.multiple ? props.value.includes(value) : props.value === value;\n\n  const toggle = (value: string) => {\n    if (props.multiple) {\n      const next = new Set(props.value);\n      if (next.has(value)) {\n        next.delete(value);\n      } else {\n        next.add(value);\n      }\n      props.onValueChange?.(Array.from(next));\n    } else {\n      props.onValueChange?.(value);\n    }\n  };\n\n  return (\n    <div\n      role={props.multiple ? \"group\" : \"radiogroup\"}\n      className={cn(\n        \"inline-flex items-center gap-1 rounded-full border bg-card p-1 shadow-sm\",\n        className,\n      )}\n    >\n      {types.map((type) => {\n        const active = isActive(type.value);\n        return (\n          <button\n            key={type.value}\n            type=\"button\"\n            role={props.multiple ? \"checkbox\" : \"radio\"}\n            aria-checked={active}\n            onClick={() => toggle(type.value)}\n            className={cn(\n              \"inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\",\n              active\n                ? \"bg-primary text-primary-foreground shadow-sm\"\n                : \"text-muted-foreground hover:bg-muted hover:text-foreground\",\n            )}\n          >\n            {type.icon}\n            {type.label}\n          </button>\n        );\n      })}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/giga/entity-type-selector.tsx"
+    }
+  ]
+}
