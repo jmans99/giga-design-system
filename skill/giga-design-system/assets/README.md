@@ -13,7 +13,7 @@ This folder holds the curated set used when building Giga products. The **full c
 
 ## Product logos (`products/`)
 
-`gigamaps`, `gigameter`, `gigablocks`, `gigamapsapi`, `gigascore`, `gigasync`, `gigavalidate` — black wordmark lockups. For dark backgrounds, export a recolored version from the generator (naive black→white inversion risks knockout artifacts) or apply a CSS `filter: invert(1)`.
+`gigamaps`, `gigameter`, `gigablocks`, `gigamapsapi`, `gigascore`, `gigasync`, `gigavalidate` — black wordmark lockups for light backgrounds. Each has a `-white.svg` variant for dark backgrounds (e.g. `gigamaps-white.svg`), recolored with the brand generator's own logic (dark fills → white, blue accent and `none`/`white` preserved).
 
 ## UNICEF
 
