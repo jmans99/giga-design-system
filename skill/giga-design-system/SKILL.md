@@ -46,4 +46,5 @@ Common Giga product layouts (map view, entity filtering, detail flows) are in [`
 
 ## Assets
 
-Logo and fonts: see [`assets/README.md`](assets/README.md).
+- Logos & fonts: [`assets/README.md`](assets/README.md)
+- Illustrations (124 Giga pictograms + Giga Meter scenes): [`references/illustrations.md`](references/illustrations.md)
