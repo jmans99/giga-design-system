@@ -1,25 +1,34 @@
-# Skill assets
+# Skill assets — Giga brand logos
 
-Official Giga brand assets used by the design system. Source: the **Giga Brand Asset Generator** (https://gigabrand.vercel.app/logos).
+Official Giga brand assets. Source: the **Giga Brand Asset Generator** (https://gigabrand.vercel.app/logos), original path pattern `/logos/<name>.svg`.
 
-## Logos
+This folder holds the curated set used when building Giga products. The **full catalog** (vertical lockups, UNICEF division/inclusion marks, event logos) lives in the repo at `public/logos/` and is raw-accessible, e.g.
+`https://raw.githubusercontent.com/jmans99/giga-design-system/main/public/logos/products/gigameter.svg`.
 
-- `giga-complete-horizontal.svg` — primary Giga horizontal lockup (wordmark `#222222`, accent `#277AFF`). Use on light backgrounds.
-- `giga-complete-horizontal-white.svg` — dark-mode variant (wordmark white, accent blue). Use on dark backgrounds, e.g. the Giga Maps header.
+## Giga master logos
 
-Both also live in the repo at `public/logos/` so the app and prototypes can serve them, e.g. `/logos/giga-complete-horizontal-white.svg`.
+- `giga-main-horizontal.svg` · `giga-main-horizontal-white.svg` — the Giga logo (mark + wordmark). Default for product headers. White variant for dark backgrounds.
+- `giga-complete-horizontal.svg` · `giga-complete-horizontal-white.svg` — the Giga · UNICEF · ITU co-brand lockup (this is the same file the site serves as `giga-unicef-itu-horizontal`).
+- Vertical lockups (`giga-main-vertical`, `giga-unicef-itu-vertical`, + `-white`) are in `public/logos/`.
+
+## Product logos (`products/`)
+
+`gigamaps`, `gigameter`, `gigablocks`, `gigamapsapi`, `gigascore`, `gigasync`, `gigavalidate` — black wordmark lockups. For dark backgrounds, export a recolored version from the generator (naive black→white inversion risks knockout artifacts) or apply a CSS `filter: invert(1)`.
+
+## UNICEF
+
+- `unicef.svg` — UNICEF logo. Division/inclusion marks (Digital Impact, Digital Inclusion in black/blue/white) are in `public/logos/unicef/`.
 
 ## Usage
 
 ```tsx
-<img src="/logos/giga-complete-horizontal-white.svg" alt="Giga" className="h-7 w-auto" />
+<img src="/logos/giga-main-horizontal-white.svg" alt="Giga" className="h-7 w-auto" />
 ```
 
-## Not included (yet)
+## Colour mechanism
 
-- **Giga · UNICEF · ITU co-brand lockup** — the brand site generates this client-side; it is not served as a distinct static file (the `giga-unicef-itu-horizontal.svg` path returns the base lockup). Export it from the generator UI and drop it here if a prototype needs the co-brand version.
-- **App icons / favicon** — add if needed.
+Giga master lockups are two-tone — dark (`#222222` / `#393939`) + Giga blue (`#277AFF`) + grey stroke (`#CACACA`). The `-white` variants swap the dark to `#FFFFFF` and keep the blue/grey, so they read on dark backgrounds.
 
 ## Fonts
 
-Type loads from Google Fonts via the `@import` in [`../references/setup.md`](../references/setup.md) (Manrope + Open Sans) — no font files required. To self-host (offline / privacy), add woff2 files here and swap the `@import` for `@font-face`.
+Type loads from Google Fonts via the `@import` in [`../references/setup.md`](../references/setup.md) (Manrope + Open Sans). To self-host, add woff2 files here and swap to `@font-face`.

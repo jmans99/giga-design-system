@@ -42,6 +42,7 @@ components/giga/          Giga composites (the value-add)
   map-entity-popup.tsx    selected-entity card
 registry.json            registry manifest
 public/r/                built registry JSON (committed for raw installs)
+public/logos/            official Giga brand logos (master, products, UNICEF, events)
 skill/giga-design-system/ the packaged Claude skill (md + assets)
 CLAUDE.md                rules Claude Code follows in this repo
 ROADMAP.md               status + what's next
