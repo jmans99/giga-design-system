@@ -1,21 +1,25 @@
 # Skill assets
 
-Drop the official Giga brand assets here so prototypes use real artwork, not placeholders. Nothing here is fabricated — add the real files:
+Official Giga brand assets used by the design system. Source: the **Giga Brand Asset Generator** (https://gigabrand.vercel.app/logos).
 
-## Needed
+## Logos
 
-- `giga-logo.svg` — primary GigaMaps / Giga wordmark (and a mono/white variant for dark mode, e.g. `giga-logo-white.svg`).
-- `favicon` / app icons if prototypes need them.
+- `giga-complete-horizontal.svg` — primary Giga horizontal lockup (wordmark `#222222`, accent `#277AFF`). Use on light backgrounds.
+- `giga-complete-horizontal-white.svg` — dark-mode variant (wordmark white, accent blue). Use on dark backgrounds, e.g. the Giga Maps header.
 
-## Fonts
-
-Type is currently loaded from Google Fonts via the `@import` in `setup.md` (Manrope + Open Sans) — no font files required. If a project must self-host (offline, privacy), add woff2 files here and swap the `@import` for `@font-face`:
-
-- `Manrope-{Medium,SemiBold}.woff2`
-- `OpenSans-{Regular,Medium,SemiBold}.woff2`
+Both also live in the repo at `public/logos/` so the app and prototypes can serve them, e.g. `/logos/giga-complete-horizontal-white.svg`.
 
 ## Usage
 
-Reference assets from the skill, e.g. an `<img src="/giga-logo-white.svg" />` in the header, or import the SVG as a React component.
+```tsx
+<img src="/logos/giga-complete-horizontal-white.svg" alt="Giga" className="h-7 w-auto" />
+```
 
-> TODO: add the official logo files. Ask the Giga brand owner for the current wordmark package.
+## Not included (yet)
+
+- **Giga · UNICEF · ITU co-brand lockup** — the brand site generates this client-side; it is not served as a distinct static file (the `giga-unicef-itu-horizontal.svg` path returns the base lockup). Export it from the generator UI and drop it here if a prototype needs the co-brand version.
+- **App icons / favicon** — add if needed.
+
+## Fonts
+
+Type loads from Google Fonts via the `@import` in [`../references/setup.md`](../references/setup.md) (Manrope + Open Sans) — no font files required. To self-host (offline / privacy), add woff2 files here and swap the `@import` for `@font-face`.

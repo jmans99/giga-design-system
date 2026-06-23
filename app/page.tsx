@@ -38,7 +38,12 @@ export default function Home() {
     <div className="dark min-h-screen bg-grey-950 text-foreground">
       {/* Header */}
       <header className="flex items-center gap-4 border-b border-border px-4 py-2.5">
-        <span className="font-heading text-lg font-semibold">GigaMaps</span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/giga-complete-horizontal-white.svg"
+          alt="Giga"
+          className="h-7 w-auto"
+        />
         <EntityTypeSelector
           multiple
           value={entities}
